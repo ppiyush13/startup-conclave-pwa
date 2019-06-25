@@ -7,7 +7,7 @@ import Box from '@material-ui/core/Box';
 
 import CalendarIcon from '@material-ui/icons/CalendarToday';
 import LocationIcon from '@material-ui/icons/LocationOn';
-import Logo from '../images/logo.jpg'
+import Logo from '../images/logo.png'
 
 const useStyles = makeStyles(theme => ({
 	root: {
