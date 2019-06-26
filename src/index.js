@@ -13,6 +13,5 @@ if(process.env.NODE_ENV === 'development') {
 	serviceWorker.unregister();
 }
 else {
-	console.log('PWA registered', process.env)
 	serviceWorker.register();
 }

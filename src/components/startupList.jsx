@@ -1,10 +1,6 @@
 import React from 'react';
-
-import {makeStyles, Card, CardContent, Grid, Typography, Link} from '@material-ui/core';
-
+import {makeStyles, Card, CardContent, Grid, Link} from '@material-ui/core';
 import CallIcon from '@material-ui/icons/Call';
-import StartupIcon from '../icons/startup';
-import InfoIcon from '@material-ui/icons/Info';
 
 const useStyles = makeStyles(theme => ({
     card: {
@@ -77,56 +73,6 @@ const data = [
                 linkedin: 'https://www.linkedin.com/in/neeravparekh/'
             }
         ]
-    },
-    {
-        src: 'techforce.png',
-        poc: [
-            {
-                name: 'Vijay Navaluri',
-                contact: '9876543210',
-                linkedin: 'https://www.linkedin.com/in/navaluri/'
-            }
-        ]
-    },
-    {
-        src: 'haptik.svg',
-        poc: [
-            {
-                name: 'Swapan Rajdev',
-                contact: '9876543210',
-                linkedin: 'https://www.linkedin.com/in/swapan-rajdev-64a0591a/'
-            }
-        ]
-    },
-    {
-        src: 'cateina.png',
-        poc: [
-            {
-                name: 'Sanachit Mehra',
-                contact: '9876543210',
-                linkedin: 'https://www.linkedin.com/in/sanachit-mehra-a8147418/'
-            }
-        ]
-    },
-    {
-        src: 'smokescreen.png',
-        poc: [
-            {
-                name: 'Raviraj Doshi',
-                contact: '9876543210',
-                linkedin: 'https://www.linkedin.com/in/raviraj-doshi-a6513615/'
-            }
-        ]
-    },
-    {
-        src: 'vphrase.png',
-        poc: [
-            {
-                name: 'Neerav Parekh',
-                contact: '9876543210',
-                linkedin: 'https://www.linkedin.com/in/neeravparekh/'
-            }
-        ]
     }
 ]
 
@@ -140,7 +86,7 @@ export default () => {
     return data.map(({src, poc}) => {
         return <Card key={src} className={classes.card}>
             <CardContent className={classes.content}>
-                <img src={process.env.PUBLIC_URL + `/startup-logos/${src}`} className={classes.cover}/>
+                <img src={require(`../images/startup-logos/${src}`)} className={classes.cover} alt={src}/>
                 <Grid container spacing={0} justify={'center'}>
                     {
                         poc && poc.map(({name, contact, linkedin}, index) => <Grid item key={index}>

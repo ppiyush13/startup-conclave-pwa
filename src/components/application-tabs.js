@@ -8,6 +8,8 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 import About from './about'
 import StartupList from './startupList'
+import ScheduleList from './schedule'
+
 import {WidthBreakPoint} from  '../constants'
 
 import CalendarIcon from '@material-ui/icons/CalendarToday';
@@ -36,7 +38,7 @@ function TabContainer(props) {
 }
 
 export default () => {
-	const [value, setValue] = React.useState(1);
+	const [value, setValue] = React.useState(0);
 	const classes = useStyles();
 	const theme = useTheme();
 	const matches = useMediaQuery(theme.breakpoints.up(WidthBreakPoint));
@@ -75,7 +77,7 @@ export default () => {
 			</Tabs>
 		</AppBar>
 		<div className={contentClassName}>
-			{value === 0 && <TabContainer>Schedule info</TabContainer>}
+			{value === 0 && <TabContainer><ScheduleList /></TabContainer>}
 			{value === 1 && <TabContainer><StartupList /></TabContainer>}
 			{value === 2 && <TabContainer><About/></TabContainer>}
 		</div>
