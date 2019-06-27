@@ -52,7 +52,7 @@ export default () => {
 			<GridRow 
 				Icon={LocationIcon}
 				label={'Location'}
-				value={'** EON2'}
+				value={'EON2'}
 			/>
 			<p>
 			Startup conclave is a part of NIPP engagement with NASSCOM, where we plan to engage Startups with some of our key pain areas with their existing solutions with minimal customization.
