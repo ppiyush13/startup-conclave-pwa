@@ -71,14 +71,14 @@ export default () => {
 				value={value}
 				onChange={handleChange}
 			>
-				<Tab icon={<CalendarIcon />} label="Schedule" />
 				<Tab icon={<StartupIcon />} label="Startups" />
+				<Tab icon={<CalendarIcon />} label="Schedule" />
 				<Tab icon={<InfoIcon />} label="About" />
 			</Tabs>
 		</AppBar>
 		<div className={contentClassName}>
-			{value === 0 && <TabContainer><ScheduleList /></TabContainer>}
-			{value === 1 && <TabContainer><StartupList /></TabContainer>}
+			{value === 0 && <TabContainer><StartupList /></TabContainer>}
+			{value === 1 && <TabContainer><ScheduleList /></TabContainer>}
 			{value === 2 && <TabContainer><About/></TabContainer>}
 		</div>
 	</>

@@ -11,7 +11,8 @@ import Logo from '../images/logo.png'
 
 const useStyles = makeStyles(theme => ({
 	root: {
-		padding: theme.spacing(1, 2)
+		padding: theme.spacing(1, 2),
+		margin: theme.spacing(2, 0)
 	},
 	details: {
 		marginLeft: theme.spacing(2)
@@ -54,8 +55,18 @@ export default () => {
 				value={'** EON2'}
 			/>
 			<p>
-				Startup Conclave is two-day event featuring talks and demonstrations from participating startups. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi dictum blandit nisl id blandit. Etiam et tortor eget lorem viverra lacinia vel eu leo.
+			Startup conclave is a part of NIPP engagement with NASSCOM, where we plan to engage Startups with some of our key pain areas with their existing solutions with minimal customization.
+Also as a part of this event we plan to present our SET framework especially developed for startups.
 			</p>
+		</Paper>
+		<Paper className={classes.root}>
+			<h3>App Created by</h3>
+			<ul>
+				<li>Aarohi Jain</li>
+				<li>Alhad Joshi</li> 
+				<li>Piyush Lodaya</li> 
+				<li>Vignesh Iyer</li>
+			</ul> 
 		</Paper>
 	</div>
 }
