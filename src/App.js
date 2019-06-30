@@ -15,7 +15,7 @@ const useStyles = makeStyles({
 });
 
 const Tabs = lazy(() => import('./components/application-tabs'))
-const AttendanceView = lazy(() => import('./components/attend'))
+const AttendanceView = lazy(() => import('./containers/attendanceContainer'))
 
 export default function IconLabelTabs() {
 	const firstRoute = routes[0]

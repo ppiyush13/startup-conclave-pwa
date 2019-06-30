@@ -1,9 +1,9 @@
 {
-  "short_name": "CS Startup Conclave",
-  "name": "CS Startup Conclave",
+  "short_name": "Startup Conclave",
+  "name": "Startup Conclave",
   "icons": [
     {
-      "src": "logo.ico",
+      "src": "favicon.ico",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
     },

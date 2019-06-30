@@ -1,10 +1,7 @@
 import React from 'react';
-import {makeStyles, Card, CardContent, Grid, Link} from '@material-ui/core';
+import {makeStyles, Grid} from '@material-ui/core';
 import {ExpansionPanel, ExpansionPanelSummary, ExpansionPanelDetails} from '@material-ui/core'
 import CheckCircle from '@material-ui/icons/CheckCircleOutline';
-import Star from '@material-ui/icons/Star';
-import Circle from '@material-ui/icons/Lens';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 import LinkedInLogo from '../images/linked-in-icon.png'
 
@@ -70,7 +67,7 @@ const useStyles = makeStyles(theme => ({
 
 const data = [
     {
-        src: 'techforce.png',
+        startup_name: 'techforce',
         poc: [
             {
                 available: true,
@@ -80,11 +77,17 @@ const data = [
             },
             {
                 name: 'Alhad Joshi'
+            },
+            {
+                name: 'Alhad Joshi'
+            },
+            {
+                name: 'Alhad Joshi'
             }
         ]
     },
     {
-        src: 'haptik.svg',
+        startup_name: 'haptik',
         poc: [
             {
                 available: true,
@@ -100,7 +103,7 @@ const data = [
         ]
     },
     {
-        src: 'cateina.png',
+        startup_name: 'cateina',
         poc: [
             {
                 name: 'Sanachit Mehra',
@@ -110,11 +113,23 @@ const data = [
             {
                 available: true,
                 name: 'Aarohi Jain'
+            },
+            {
+                available: true,
+                name: 'Aarohi Jain'
+            },
+            {
+                available: true,
+                name: 'Aarohi Jain'
+            },
+            {
+                available: true,
+                name: 'Aarohi Jain'
             }
         ]
     },
     {
-        src: 'smokescreen.png',
+        startup_name: 'smokescreen',
         poc: [
             {
                 name: 'Raviraj Doshi',
@@ -124,7 +139,7 @@ const data = [
         ]
     },
     {
-        src: 'vphrase.png',
+        startup_name: 'vphrase',
         poc: [
             {
                 name: 'Neerav Parekh',
@@ -135,13 +150,13 @@ const data = [
     }
 ]
 
-data.sort((left, right)=> left.src.localeCompare(right.src))
+data.sort((left, right)=> left.startup_name.localeCompare(right.startup_name))
 
-
-export default () => {
+export default ({data}) => {
     const classes = useStyles()
 
-    return data.map(({src, poc}) => {
+    return data.map(({startup_name, poc}) => {
+        const src = `${startup_name}.png`
         return <ExpansionPanel key={src} className={classes.card}>
             <ExpansionPanelSummary>
                 <div className={classes.imgWrapper}>
@@ -170,8 +185,8 @@ export default () => {
                 poc && poc.map(({name, linkedin}, index) => (
                     <div className={classes.additionalItem} key={index}>
                         <span>{name}</span>
-                        <a href={linkedin} target="_blank" rel="noreferrer">
-                            <img 
+                        <a href={linkedin} target="_blank" rel="noopener noreferrer">
+                            <img
                                 src={LinkedInLogo} 
                                 height={'32px'} 
                                 width={'32px'} 

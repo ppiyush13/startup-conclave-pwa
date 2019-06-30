@@ -8,7 +8,7 @@ import { makeStyles, useTheme  } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 import About from './about'
-import StartupList from './startupList'
+import StartupList from '../containers/startupListContainer'
 import ScheduleList from './schedule'
 
 import {WidthBreakPoint, routes, startup, schedule, about} from  '../constants'
