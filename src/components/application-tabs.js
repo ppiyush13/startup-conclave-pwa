@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {useState} from 'react';
+import { Redirect } from "react-router-dom";
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
@@ -10,7 +11,7 @@ import About from './about'
 import StartupList from './startupList'
 import ScheduleList from './schedule'
 
-import {WidthBreakPoint} from  '../constants'
+import {WidthBreakPoint, routes, startup, schedule, about} from  '../constants'
 
 import CalendarIcon from '@material-ui/icons/CalendarToday';
 import StartupIcon from '../icons/startup';
@@ -31,20 +32,22 @@ const useStyles = makeStyles(theme => ({
 
 function TabContainer(props) {
   return (
-		<Typography component="div" style={{ padding: 8 * 2 }}>
+		<Typography component="div" style={{ padding: '16px 4px' }}>
 			{props.children}
 		</Typography>
 	);
 }
 
-export default () => {
-	const [value, setValue] = React.useState(0);
+export default ({match}) => {
+	const [redirectTo, setRedirectTo] = useState()
+	const value = match.params.tab
+	const index = routes.indexOf(value)
 	const classes = useStyles();
 	const theme = useTheme();
 	const matches = useMediaQuery(theme.breakpoints.up(WidthBreakPoint));
 
 	function handleChange(event, newValue) {
-		setValue(newValue);
+		setRedirectTo(routes[newValue])
 	}
 	
 	let widthSpecificProps, appBarClassName, contentClassName
@@ -65,10 +68,15 @@ export default () => {
 	
 	
 	return <>
+		{
+			redirectTo 
+				? <Redirect to={`/tabs/${redirectTo}`} />
+				: null
+		}
 		<AppBar position="fixed" className={appBarClassName}>
 			<Tabs
 				{...widthSpecificProps}
-				value={value}
+				value={index}
 				onChange={handleChange}
 			>
 				<Tab icon={<StartupIcon />} label="Startups" />
@@ -77,9 +85,9 @@ export default () => {
 			</Tabs>
 		</AppBar>
 		<div className={contentClassName}>
-			{value === 0 && <TabContainer><StartupList /></TabContainer>}
-			{value === 1 && <TabContainer><ScheduleList /></TabContainer>}
-			{value === 2 && <TabContainer><About/></TabContainer>}
+			{value === startup && <TabContainer><StartupList /></TabContainer>}
+			{value === schedule && <TabContainer><ScheduleList /></TabContainer>}
+			{value === about && <TabContainer><About/></TabContainer>}
 		</div>
 	</>
 }

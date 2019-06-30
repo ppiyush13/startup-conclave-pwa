@@ -135,13 +135,6 @@ const data = [
     }
 ]
 
-const icons = [CheckCircle, Star, Circle]
-let count = 0
-const Icon = (props) => {
-    const Comp = icons[(count++) % 3]
-    return <Comp {...props}/>
-}
-
 data.sort((left, right)=> left.src.localeCompare(right.src))
 
 
@@ -150,7 +143,7 @@ export default () => {
 
     return data.map(({src, poc}) => {
         return <ExpansionPanel key={src} className={classes.card}>
-            <ExpansionPanelSummary expandIcon1={<ExpandMoreIcon />}>
+            <ExpansionPanelSummary>
                 <div className={classes.imgWrapper}>
                     <img 
                         src={require(`../images/startup-logos/${src}`)} 
@@ -165,7 +158,7 @@ export default () => {
                             <div className={classes.gridItem} key={index}>
                                 <span>{name}</span>
                                 {
-                                    available && <Icon className={classes.icon + ' '+ classes.animate}/>
+                                    available && <CheckCircle className={classes.icon + ' '+ classes.animate}/>
                                 }
                             </div>
                         ))
