@@ -172,7 +172,7 @@ export default ({data, map, doFetch, createMap, updateData}) => {
             })
         }
         <AppBar position="fixed" color="primary" className={classes.footer}>
-            <Button variant="contained" color="primary" className={classes.button} onClick={onSaveClick}>
+            <Button variant="contained" color="primary" className={classes.button} size="large"onClick={onSaveClick}>
                 <SaveIcon className={classes.leftIcon} />Save
             </Button>
         </AppBar>
