@@ -1,11 +1,7 @@
 import React, {useState} from 'react';
 import { Redirect } from "react-router-dom";
-import AppBar from '@material-ui/core/AppBar';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
-import Typography from '@material-ui/core/Typography';
+import { AppBar, Tabs, Tab, Typography, useMediaQuery }from '@material-ui/core';
 import { makeStyles, useTheme  } from '@material-ui/core/styles';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 import About from './about'
 import StartupList from '../containers/startupListContainer'
@@ -21,18 +17,12 @@ const useStyles = makeStyles(theme => ({
 	appBar: {
 		top: 'auto',
 		bottom: 0,
-	},
-	contentTopMargin: {
-		margin: theme.spacing(9, 0, 0, 0)
-	},
-	contentBottomMargin: {
-		margin: theme.spacing(0, 0, 9, 0)
 	}
 }));
 
 function TabContainer(props) {
   return (
-		<Typography component="div" style={{ padding: '16px 4px' }}>
+		<Typography component="div" style={{ padding: '0px 4px' }}>
 			{props.children}
 		</Typography>
 	);
@@ -50,17 +40,15 @@ export default ({match}) => {
 		setRedirectTo(routes[newValue])
 	}
 	
-	let widthSpecificProps, appBarClassName, contentClassName
+	let widthSpecificProps, appBarClassName
 	if(matches) {
 		appBarClassName = ''
-		contentClassName = classes.contentTopMargin
 		widthSpecificProps = {
 			centered: true
 		}
 	}
 	else {
 		appBarClassName = classes.appBar
-		contentClassName = classes.contentBottomMargin
 		widthSpecificProps = {
 			variant: 'fullWidth'
 		}
@@ -84,7 +72,7 @@ export default ({match}) => {
 				<Tab icon={<InfoIcon />} label="About" />
 			</Tabs>
 		</AppBar>
-		<div className={contentClassName}>
+		<div>
 			{value === startup && <TabContainer><StartupList /></TabContainer>}
 			{value === schedule && <TabContainer><ScheduleList /></TabContainer>}
 			{value === about && <TabContainer><About/></TabContainer>}

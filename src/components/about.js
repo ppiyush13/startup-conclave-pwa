@@ -1,8 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
+import { Paper, Grid, Box } from '@material-ui/core';
 
 
 import CalendarIcon from '@material-ui/icons/CalendarToday';
@@ -62,10 +60,9 @@ Also as a part of this event we plan to present our SET framework especially dev
 		<Paper className={classes.root}>
 			<h3>App Created by</h3>
 			<ul>
+				<li>Piyush Lodaya</li>
+				<li>Alhad Joshi</li>
 				<li>Aarohi Jain</li>
-				<li>Alhad Joshi</li> 
-				<li>Piyush Lodaya</li> 
-				<li>Vignesh Iyer</li>
 			</ul> 
 		</Paper>
 	</div>

@@ -6,7 +6,7 @@ import Snackbar from '@material-ui/core/Snackbar';
 
 const useStyles = makeStyles(theme => ({
     root: {
-        margin: theme.spacing(2, 0.5),
+        margin: theme.spacing(0, 0.5, 7, 0.5),
     },
     card: {
         display: 'flex',
@@ -47,6 +47,7 @@ export default ({data, map, doFetch, createMap, updateData}) => {
     const [isSaving, updateIsSaving] = useState(false)
     const [message, setMessage] = useState(null)
     const classes = useStyles()
+    const orgMap = createMap(data)
     const handleChange = (event) => {
         const key = event.target.value
         map[key].available = !map[key].available
@@ -63,7 +64,6 @@ export default ({data, map, doFetch, createMap, updateData}) => {
     }
 
     const save = updatedData => {
-        const orgMap = createMap(data)
         const updatedMap = createMap(updatedData)
         const updatedPOCAvailability = Object.keys(orgMap).reduce((acc, key)=> {
             const orgAvailability = orgMap[key].available
@@ -138,44 +138,46 @@ export default ({data, map, doFetch, createMap, updateData}) => {
                 : null
         }
         <Paper className={classes.root}>
-        {
-            startupList.map(({startup_name, poc}) => {
-                const src = `${startup_name}.png`
-                return <Typography component="div" className={classes.card} key={startup_name}>
-                    <div className={classes.imgWrapper}>
-                        <img 
-                            src={require(`../images/startup-logos/${src}`)} 
-                            className={classes.cover} 
-                            alt={src}
-                        />
-                    </div>
-                    <span className={classes.spacer}></span>
-                    <Grid className={classes.grid} container spacing={0} justify={'center'} direction={'column'}>
-                        {
-                            poc && poc.map(({name, available}, index) => (
-                                <div className={classes.gridItem} key={index}>
-                                    <FormControlLabel
-                                        control={
-                                            <Checkbox
-                                                value={`${startup_name}_${name}`}
-                                                checked={available}
-                                                onChange={handleChange}
-                                            />
-                                        }
-                                        label={name}
-                                    />
-                                </div>
-                            ))
-                        }
-                    </Grid>
-                </Typography>
-            })
-        }
-        <AppBar position="fixed" color="primary" className={classes.footer}>
-            <Button variant="contained" color="primary" className={classes.button} size="large"onClick={onSaveClick}>
-                <SaveIcon className={classes.leftIcon} />Save
-            </Button>
-        </AppBar>
+			{
+				startupList.map(({startup_name, poc}) => {
+					const src = `${startup_name}.png`
+					return <Typography component="div" className={classes.card} key={startup_name}>
+						<div className={classes.imgWrapper}>
+							<img 
+								src={require(`../images/startup-logos/${src}`)} 
+								className={classes.cover} 
+								alt={src}
+							/>
+						</div>
+						<span className={classes.spacer}></span>
+						<Grid className={classes.grid} container spacing={0} justify={'center'} direction={'column'}>
+							{
+								poc && poc.map(({name, available}, index) => {
+									const key = `${startup_name}_${name}`
+									return <div className={classes.gridItem} key={index}>
+										<FormControlLabel
+											control={
+												<Checkbox
+													value={key}
+													disabled={orgMap[key].available}
+													checked={available}
+													onChange={handleChange}
+												/>
+											}
+											label={name}
+										/>
+									</div>
+								})
+							}
+						</Grid>
+					</Typography>
+				})
+			}
+			<AppBar position="fixed" color="primary" className={classes.footer}>
+				<Button variant="contained" color="primary" className={classes.button} size="large"onClick={onSaveClick}>
+					<SaveIcon className={classes.leftIcon} />Save
+				</Button>
+			</AppBar>
         </Paper>
     </>
 }

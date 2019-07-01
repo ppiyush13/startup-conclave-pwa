@@ -8,11 +8,27 @@ import Loader from './components/loader'
 import {WidthBreakPoint, routes} from  './constants'
 import { CssBaseline, Container } from '@material-ui/core';
 
-const useStyles = makeStyles({
+const commonContentStyles = theme => {
+	return {
+		paddingTop: theme.spacing(2),
+		paddingBottom: theme.spacing(2),
+	}
+}
+
+const useStyles = makeStyles(theme => ({
 	root: {
 		flexGrow: 1
 	},
-});
+	contentMaxWidthUp: {
+		...commonContentStyles(theme),
+		marginTop: theme.spacing(9)
+	},
+	contentMaxWidthDown: {
+		...commonContentStyles(theme),
+		marginTop: theme.spacing(6),
+		marginBottom: theme.spacing(9)
+	}
+}));
 
 const Tabs = lazy(() => import('./components/application-tabs'))
 const AttendanceView = lazy(() => import('./containers/attendanceContainer'))
@@ -20,18 +36,20 @@ const AttendanceView = lazy(() => import('./containers/attendanceContainer'))
 export default function IconLabelTabs() {
 	const firstRoute = routes[0]
 	const theme = useTheme();
-	const classes = useStyles();
+	const {contentMaxWidthUp, contentMaxWidthDown} = useStyles();
 	const matches = useMediaQuery(theme.breakpoints.up(WidthBreakPoint));
+	const containerClass = matches ? contentMaxWidthUp : contentMaxWidthDown
 
 	return <>
 		<CssBaseline/>
-		{
+		
+		<Container className={containerClass} maxWidth={'sm'}>
+			<BrowserRouter>
+				{
 			matches
 			? null
 			: <ApplicationHeader/>
 		}
-		<Container className={classes.root} maxWidth={'sm'}>
-			<BrowserRouter>
 				<Suspense fallback={<Loader />}>
 					<Switch>
 						<Route path="/attend" component={AttendanceView}/>
