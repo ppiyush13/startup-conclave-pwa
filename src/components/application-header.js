@@ -3,7 +3,6 @@ import { AppBar, Toolbar, Typography, Grid, useScrollTrigger } from '@material-u
 import InfoIcon from '@material-ui/icons/Refresh';
 import {withRouter} from 'react-router-dom';
 
-
 const ElevationScroll = ({ children }) => {
 	const trigger = useScrollTrigger({
 		disableHysteresis: true,
@@ -14,8 +13,6 @@ const ElevationScroll = ({ children }) => {
 		elevation: trigger ? 4 : 0,
 	});
 }
-
-
 
 const ApplicationHeader = ({location, history}) => {
 	const refreshApp = () => {

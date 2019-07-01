@@ -42,14 +42,13 @@ export default function IconLabelTabs() {
 
 	return <>
 		<CssBaseline/>
-		
 		<Container className={containerClass} maxWidth={'sm'}>
 			<BrowserRouter>
 				{
-			matches
-			? null
-			: <ApplicationHeader/>
-		}
+					matches
+					? null
+					: <ApplicationHeader/>
+				}
 				<Suspense fallback={<Loader />}>
 					<Switch>
 						<Route path="/attend" component={AttendanceView}/>

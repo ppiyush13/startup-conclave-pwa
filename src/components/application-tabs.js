@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect } from 'react';
 import { Redirect } from "react-router-dom";
 import { AppBar, Tabs, Tab, Typography, useMediaQuery }from '@material-ui/core';
 import { makeStyles, useTheme  } from '@material-ui/core/styles';
@@ -35,6 +35,10 @@ export default ({match}) => {
 	const classes = useStyles();
 	const theme = useTheme();
 	const matches = useMediaQuery(theme.breakpoints.up(WidthBreakPoint));
+	
+	useEffect(() => {
+		window.scrollTo(0, 0)
+	});
 
 	function handleChange(event, newValue) {
 		setRedirectTo(routes[newValue])
