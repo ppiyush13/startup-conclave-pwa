@@ -26,8 +26,7 @@ const useStyles = makeStyles(theme => ({
         minWidth: theme.spacing(3)
     },
     cover: {
-        width: 120
-        //height: 50
+        maxWidth: 120
     },
     iconParent: {
         display: 'flex',
@@ -139,12 +138,22 @@ const data = [
         ]
     },
     {
-        startup_name: 'vphrase',
+        startup_name: 'linkedin1',
         poc: [
             {
                 name: 'Neerav Parekh',
                 contact: '9876543210',
                 linkedin: 'https://www.linkedin.com/in/neeravparekh/'
+            }
+        ]
+    },
+    {
+        startup_name: 'aiOnTheFly',
+        poc: [
+            {
+                name: 'Neerav Parekh',
+                contact: '9876543210',
+                //linkedin: 'https://www.linkedin.com/in/neeravparekh/'
             }
         ]
     }
@@ -157,11 +166,18 @@ export default ({data}) => {
 
     return data.map(({startup_name, poc}) => {
         const src = `${startup_name}.png`
+		let image
+		try {
+			image = require(`../images/startup-logos/${src}`)
+		}
+		catch(ex) {
+			image = require('../images/startup-logos/no-logo.png')
+		}
         return <ExpansionPanel key={src} className={classes.card}>
             <ExpansionPanelSummary>
                 <div className={classes.imgWrapper}>
                     <img 
-                        src={require(`../images/startup-logos/${src}`)} 
+                        src={image}
                         className={classes.cover} 
                         alt={src}
                     />
@@ -182,17 +198,28 @@ export default ({data}) => {
             </ExpansionPanelSummary>
             <ExpansionPanelDetails className={classes.expansionDetails}>
             {
-                poc && poc.map(({name, linkedin}, index) => (
+                poc && poc.map(({name, linkedin, contact}, index) => (
                     <div className={classes.additionalItem} key={index}>
-                        <span>{name}</span>
-                        <a href={linkedin} target="_blank" rel="noopener noreferrer">
-                            <img
-                                src={LinkedInLogo} 
-                                height={'32px'} 
-                                width={'32px'} 
-                                alt={'Linkedin logo'}
-                            />
-                        </a>
+                        <div>
+							<span>{name}</span>
+							{
+								contact
+									? <span>({contact})</span>
+									: null
+							}
+						</div>
+						{
+							linkedin
+								? <a href={linkedin} target="_blank" rel="noopener noreferrer">
+									<img
+										src={LinkedInLogo} 
+										height={'32px'} 
+										width={'32px'} 
+										alt={'Linkedin logo'}
+									/>
+								</a>
+								: null
+						}
                     </div>
                 ))
             }
