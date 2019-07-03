@@ -21,6 +21,10 @@ const useStyles = makeStyles(theme => ({
         width: '40%',
         minWidth: theme.spacing(15)
     },
+	noLogo: {
+		fontWeight: 'bold',
+		textAlign: 'center'
+	},
     spacer: {
         width: '10%',
         minWidth: theme.spacing(3)
@@ -140,14 +144,24 @@ export default ({data, map, doFetch, createMap, updateData}) => {
         <Paper className={classes.root}>
 			{
 				startupList.map(({startup_name, poc}) => {
+					let image
 					const src = `${startup_name}.png`
+					try {
+						image = require(`../images/startup-logos/${src}`)
+					}
+					catch(ex) {/***/}
 					return <Typography component="div" className={classes.card} key={startup_name}>
 						<div className={classes.imgWrapper}>
-							<img 
-								src={require(`../images/startup-logos/${src}`)} 
-								className={classes.cover} 
-								alt={src}
-							/>
+							{
+								image
+									? <img 
+										src={image}
+										className={classes.cover} 
+										alt={src}
+									/>
+									: <span className={classes.noLogo}>{startup_name}</span>
+							}
+							
 						</div>
 						<span className={classes.spacer}></span>
 						<Grid className={classes.grid} container spacing={0} justify={'center'} direction={'column'}>

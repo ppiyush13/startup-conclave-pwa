@@ -13,11 +13,17 @@ const useStyles = makeStyles(theme => ({
         },
         margin: theme.spacing(2, 0)
     },
+	panelSummary: {
+		padding: theme.spacing(0, 1.5)
+	},
     content: {
         display: 'flex',
         alignItems: 'center'
     },
     imgWrapper: {
+		display: 'flex',
+		alignItems: 'center',
+		justifyContent: 'center',
         width: '40%',
         minWidth: theme.spacing(15)
     },
@@ -26,8 +32,13 @@ const useStyles = makeStyles(theme => ({
         minWidth: theme.spacing(3)
     },
     cover: {
-        maxWidth: 120
+        maxWidth: 120,
+		maxHeight: 60
     },
+	noLogo: {
+		fontWeight: 'bold',
+		textAlign: 'center'
+	},
     iconParent: {
         display: 'flex',
         marginTop: theme.spacing(0.5)
@@ -171,16 +182,20 @@ export default ({data}) => {
 			image = require(`../images/startup-logos/${src}`)
 		}
 		catch(ex) {
-			image = require('../images/startup-logos/no-logo.png')
+			//image = require('../images/startup-logos/no-logo.png')
 		}
         return <ExpansionPanel key={src} className={classes.card}>
-            <ExpansionPanelSummary>
+            <ExpansionPanelSummary className={classes.panelSummary}>
                 <div className={classes.imgWrapper}>
-                    <img 
-                        src={image}
-                        className={classes.cover} 
-                        alt={src}
-                    />
+                    {
+						image
+							? <img 
+								src={image}
+								className={classes.cover} 
+								alt={startup_name}
+							/>
+							: <span className={classes.noLogo}>{startup_name}</span>
+					}
                 </div>
                 <span className={classes.spacer}></span>
                 <Grid className={classes.grid} container spacing={0} justify={'center'} direction={'column'}>
