@@ -3,6 +3,7 @@ import {makeStyles, Paper, Grid, Typography, FormControlLabel, Checkbox, AppBar,
 import SaveIcon from '@material-ui/icons/Save'
 import Loader from './loader'
 import Snackbar from '@material-ui/core/Snackbar';
+import ApplicationHeader from './application-header'
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -18,6 +19,9 @@ const useStyles = makeStyles(theme => ({
         }
     },
     imgWrapper: {
+        display: 'flex',
+		alignItems: 'center',
+		justifyContent: 'center',
         width: '40%',
         minWidth: theme.spacing(15)
     },
@@ -30,8 +34,8 @@ const useStyles = makeStyles(theme => ({
         minWidth: theme.spacing(3)
     },
     cover: {
-        width: 120
-        //height: 50
+        maxWidth: 120,
+		maxHeight: 60
     },
     gridItem: {
         display: 'flex',
@@ -141,6 +145,7 @@ export default ({data, map, doFetch, createMap, updateData}) => {
                 />
                 : null
         }
+		<ApplicationHeader/>
         <Paper className={classes.root}>
 			{
 				startupList.map(({startup_name, poc}) => {

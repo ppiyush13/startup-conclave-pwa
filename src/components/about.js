@@ -62,6 +62,7 @@ Also as a part of this event we plan to present our SET framework especially dev
 			<ul>
 				<li>Piyush Lodaya</li>
 				<li>Alhad Joshi</li>
+				<li>Lay Patel</li>
 				<li>Aarohi Jain</li>
 			</ul> 
 		</Paper>
