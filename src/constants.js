@@ -12,5 +12,5 @@ export const routes = [startup, schedule, about]
  * Resources
  */
 
- //export const StartupsUrl = 'https://startup-conclave-ms.herokuapp.com/api/startups'
- export const StartupsUrl = 'http://localhost:13130/api/startups'
+ export const StartupsUrl = 'https://startup-conclave-ms.herokuapp.com/api/startups'
+ //export const StartupsUrl = 'http://localhost:13130/api/startups'

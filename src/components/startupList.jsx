@@ -25,7 +25,8 @@ const useStyles = makeStyles(theme => ({
 		alignItems: 'center',
 		justifyContent: 'center',
         width: '40%',
-        minWidth: theme.spacing(15)
+        minWidth: theme.spacing(15),
+		textAlign: 'center'
     },
     spacer: {
         width: '20%',
@@ -66,116 +67,23 @@ const useStyles = makeStyles(theme => ({
         marginLeft: theme.spacing(0.5)
     },
     expansionDetails: {
-        flexDirection: 'column'
+        flexDirection: 'column',
+		padding: theme.spacing(1, 3)
     },
     additionalItem: {
         display: 'flex',
         justifyContent: 'space-between',
-        padding: theme.spacing(1)
-    }
+        padding: theme.spacing(0.5, 0)
+    },
+	webSiteLink: {
+		color: 'inherit'
+	}
 }))
-
-const data = [
-    {
-        startup_name: 'techforce',
-        poc: [
-            {
-                available: true,
-                name: 'Vijay Navaluri',
-                contact: '9876543210',
-                linkedin: 'https://www.linkedin.com/in/navaluri/'
-            },
-            {
-                name: 'Alhad Joshi'
-            },
-            {
-                name: 'Alhad Joshi'
-            },
-            {
-                name: 'Alhad Joshi'
-            }
-        ]
-    },
-    {
-        startup_name: 'haptik',
-        poc: [
-            {
-                available: true,
-                name: 'Swapan Rajdev',
-                contact: '9876543210',
-                linkedin: 'https://www.linkedin.com/in/swapan-rajdev-64a0591a/'
-            },
-            {
-                name: 'Piyush Lodaya',
-                contact: '9876543210',
-                linkedin: 'https://www.linkedin.com/in/swapan-rajdev-64a0591a/'
-            }
-        ]
-    },
-    {
-        startup_name: 'cateina',
-        poc: [
-            {
-                name: 'Sanachit Mehra',
-                contact: '9876543210',
-                linkedin: 'https://www.linkedin.com/in/sanachit-mehra-a8147418/'
-            },
-            {
-                available: true,
-                name: 'Aarohi Jain'
-            },
-            {
-                available: true,
-                name: 'Aarohi Jain'
-            },
-            {
-                available: true,
-                name: 'Aarohi Jain'
-            },
-            {
-                available: true,
-                name: 'Aarohi Jain'
-            }
-        ]
-    },
-    {
-        startup_name: 'smokescreen',
-        poc: [
-            {
-                name: 'Raviraj Doshi',
-                contact: '9876543210',
-                linkedin: 'https://www.linkedin.com/in/raviraj-doshi-a6513615/'
-            }
-        ]
-    },
-    {
-        startup_name: 'linkedin1',
-        poc: [
-            {
-                name: 'Neerav Parekh',
-                contact: '9876543210',
-                linkedin: 'https://www.linkedin.com/in/neeravparekh/'
-            }
-        ]
-    },
-    {
-        startup_name: 'aiOnTheFly',
-        poc: [
-            {
-                name: 'Neerav Parekh',
-                contact: '9876543210',
-                //linkedin: 'https://www.linkedin.com/in/neeravparekh/'
-            }
-        ]
-    }
-]
-
-data.sort((left, right)=> left.startup_name.localeCompare(right.startup_name))
 
 export default ({data}) => {
     const classes = useStyles()
 
-    return data.map(({startup_name, poc}) => {
+    return data.map(({startup_name, website, poc}) => {
         const src = `${startup_name}.png`
 		let image
 		try {
@@ -184,10 +92,17 @@ export default ({data}) => {
 		catch(ex) {
 			//image = require('../images/startup-logos/no-logo.png')
 		}
+		const webSiteClick = evt => {
+			if(evt.currentTarget.href)
+				evt.stopPropagation()
+			else
+				evt.preventDefault()
+		}
         return <ExpansionPanel key={src} className={classes.card}>
             <ExpansionPanelSummary className={classes.panelSummary}>
                 <div className={classes.imgWrapper}>
-                    {
+                    <a href={website} target="_blank" rel="noopener noreferrer" 
+						onClick={webSiteClick} className={classes.webSiteLink} >{
 						image
 							? <img 
 								src={image}
@@ -195,7 +110,7 @@ export default ({data}) => {
 								alt={startup_name}
 							/>
 							: <span className={classes.noLogo}>{startup_name}</span>
-					}
+					}</a>
                 </div>
                 <span className={classes.spacer}></span>
                 <Grid className={classes.grid} container spacing={0} justify={'center'} direction={'column'}>
